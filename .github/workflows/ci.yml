@@ -19,7 +19,8 @@ jobs:
           VARIANT: ${{ matrix.variant }}
         run: |
           export TAG_VERSION=${{ matrix.variant }}
-          docker build . --file ${{ matrix.variant }}/Dockerfile --tag chinayin/debian:${TAG_VERSION}
+          cd ${{ matrix.variant }}
+          docker build . --file Dockerfile --tag chinayin/debian:${TAG_VERSION}
           docker image ls
 
       - name: Push image to Docker hub
