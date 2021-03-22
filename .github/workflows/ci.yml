@@ -1,0 +1,33 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: master
+  schedule:
+    - cron: 0 0 * * *
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        variant: [ buster, buster-slim ]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build the Docker image
+        env:
+          VARIANT: ${{ matrix.variant }}
+        run: |
+          export TAG_VERSION=${{ matrix.variant }}
+          docker build . --file ${{ matrix.variant }}/Dockerfile --tag chinayin/debian:${TAG_VERSION}
+          docker image ls
+
+      - name: Push image to Docker hub
+        if: success()
+        env:
+          VARIANT: ${{ matrix.variant }}
+        run: |
+          export TAG_VERSION=${{ matrix.variant }}
+          echo ${{ secrets.DOCKER_HUB_TOKEN }} | docker login -u ${{ secrets.DOCKER_HUB_USER }} --password-stdin
+          docker push chinayin/debian:${TAG_VERSION}
+          docker logout
