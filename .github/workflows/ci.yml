@@ -30,7 +30,6 @@ jobs:
         env:
           TAG_VERSION: ${{ matrix.variant }}
         run: |
-          docker image ls
           echo ${{ secrets.DOCKER_HUB_TOKEN }} | docker login -u ${{ secrets.DOCKER_HUB_USER }} --password-stdin
           docker push chinayin/debian:${TAG_VERSION}
           docker logout
