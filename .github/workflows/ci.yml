@@ -16,19 +16,21 @@ jobs:
       - uses: actions/checkout@v2
       - name: Build the Docker image
         env:
-          VARIANT: ${{ matrix.variant }}
+          TAG_VERSION: ${{ matrix.variant }}
+        working-directory: ${{ matrix.variant }}
         run: |
-          export TAG_VERSION=${{ matrix.variant }}
-          cd ${{ matrix.variant }}
-          docker build . --file Dockerfile --tag chinayin/debian:${TAG_VERSION}
-          docker image ls
-
+          docker build \
+          --pull \
+          --no-cache \
+          --file Dockerfile \
+          --tag chinayin/debian:${TAG_VERSION} \
+          .
       - name: Push image to Docker hub
         if: success()
         env:
-          VARIANT: ${{ matrix.variant }}
+          TAG_VERSION: ${{ matrix.variant }}
         run: |
-          export TAG_VERSION=${{ matrix.variant }}
+          docker image ls
           echo ${{ secrets.DOCKER_HUB_TOKEN }} | docker login -u ${{ secrets.DOCKER_HUB_USER }} --password-stdin
           docker push chinayin/debian:${TAG_VERSION}
           docker logout
