@@ -24,10 +24,11 @@ jobs:
           df -h
       - name: Build the Docker image
         env:
+          DOCKER_BUILDKIT: 1
           TAG_VERSION: ${{ matrix.variant }}
         working-directory: ${{ matrix.variant }}
         run: |
-          DOCKER_BUILDKIT=1 docker build \
+          docker build \
           --pull --no-cache \
           --file Dockerfile \
           --tag chinayin/debian:${TAG_VERSION} \
