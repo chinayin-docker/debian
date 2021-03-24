@@ -29,7 +29,8 @@ jobs:
         working-directory: ${{ matrix.variant }}
         run: |
           docker build \
-          --pull --no-cache \
+          --pull \
+          --no-cache \
           --file Dockerfile \
           --tag chinayin/debian:${TAG_VERSION} \
           .
