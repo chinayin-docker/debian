@@ -19,11 +19,8 @@ jobs:
       - name: Set variables
         id: vars
         run: |
-          echo ::set-output name=actor::${GITHUB_ACTOR}
-          echo ::set-output name=repository::$(echo ${GITHUB_REPOSITORY} | rev | cut -d/ -f1 | rev)
-          echo ::set-output name=repo::${GITHUB_ACTOR}/$(echo ${GITHUB_REPOSITORY} | rev | cut -d/ -f1 | rev)
+          echo ::set-output name=repository::${GITHUB_ACTOR}/$(echo ${GITHUB_REPOSITORY} | rev | cut -d/ -f1 | rev)
           echo ::set-output name=tag::${GITHUB_REF#refs/*/}
-          echo ${output}
       - name: Free up disk space
         run: |
           sudo apt autoremove --purge && sudo apt -y clean
@@ -44,4 +41,4 @@ jobs:
           push: true
           no-cache: true
           tags: |
-            ${{ steps.vars.outputs.repo }}/:${{ matrix.variant }}
+            ${{ steps.vars.outputs.repository }}:${{ matrix.variant }}
