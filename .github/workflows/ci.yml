@@ -23,6 +23,7 @@ jobs:
           echo ::set-output name=repository::$(echo ${GITHUB_REPOSITORY} | rev | cut -d/ -f1 | rev)
           echo ::set-output name=repo::${GITHUB_ACTOR}/$(echo ${GITHUB_REPOSITORY} | rev | cut -d/ -f1 | rev)
           echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+          echo ${output}
       - name: Free up disk space
         run: |
           sudo apt autoremove --purge && sudo apt -y clean
