@@ -23,6 +23,6 @@ RUN set -eux \
     ## alias
     && printf "alias ls='ls --color=auto'\nalias ll='ls -l --color=auto'\nalias l='ls -lA --color=auto'" >> /root/.bashrc \
     ## install packages
-    && install_packages procps \
+    && install_packages procps tini \
     ## end
     && echo 'prebuild done.';
