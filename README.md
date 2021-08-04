@@ -1,4 +1,5 @@
-# Debian Base Image
+Debian Base Image
+=================
 
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/chinayin-docker/debian/Docker%20Image%20CI)
 ![Docker Image Version (latest semver)](https://img.shields.io/docker/v/chinayin/debian?sort=semver)
@@ -9,11 +10,12 @@ A minimalist Debian-based image built specifically to be used as a base image fo
 
 Debian is a Linux distribution that's composed entirely of free and open-source software.
 
-# Use Debian
+Using Debian
+------------
 
 You can use the image directly, e.g.
 
-```
+```bash
 docker run --rm -it chinayin/debian:buster-slim
 ```
 
@@ -22,6 +24,18 @@ than 24 hours ago.
 
 You can also use the images as a base for your own Dockerfile:
 
-```
+```bash
 FROM chinayin/debian:buster-slim
 ```
+
+### Install package
+
+```bash
+install_packages procps
+```
+
+### [tini](https://github.com/krallin/tini)
+
+Note that this installs `/usr/bin/tini` (and `/usr/bin/tini-static`), not `/tini`.
+
+`ENTRYPOINT ["/usr/bin/tini", "--"]` or `ENTRYPOINT ["/usr/bin/tini", "--", "/docker-entrypoint.sh"]`
