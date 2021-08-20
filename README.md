@@ -17,6 +17,7 @@ You can use the image directly, e.g.
 
 ```bash
 docker run --rm -it chinayin/debian:buster-slim
+docker run --rm -it chinayin/debian:bullseys-slim
 ```
 
 The images are built daily and have the security release enabled, so will contain any security updates released more
@@ -26,6 +27,7 @@ You can also use the images as a base for your own Dockerfile:
 
 ```bash
 FROM chinayin/debian:buster-slim
+FROM chinayin/debian:bullseys-slim
 ```
 
 ### Install package

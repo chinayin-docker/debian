@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        variant: [ buster, buster-slim ]
+        variant: [ buster, buster-slim, bullseye, bullseye-slim ]
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
