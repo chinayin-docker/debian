@@ -25,11 +25,23 @@ variable "repository" {
 
 target "_all_platforms" {
   platforms = platforms()
-  no-cache  = true
-  pull      = true
-  output    = ["type=registry"]
 }
 
+target "bullseye" {
+  inherits = ["_all_platforms"]
+  context  = "bullseye"
+  tags     = [
+    "${repository}:bullseye",
+  ]
+}
+target "bullseye-slim" {
+  inherits = ["_all_platforms"]
+  context  = "bullseye-slim"
+  tags     = [
+    "${repository}:latest",
+    "${repository}:bullseye-slim",
+  ]
+}
 target "buster" {
   inherits = ["_all_platforms"]
   context  = "buster"
@@ -42,19 +54,5 @@ target "buster-slim" {
   context  = "buster"
   tags     = [
     "${repository}:buster-slim",
-  ]
-}
-target "bullseye" {
-  inherits = ["_all_platforms"]
-  context  = "bullseye"
-  tags     = [
-    "${repository}:bullseye",
-  ]
-}
-target "bullseye-slim" {
-  inherits = ["_all_platforms"]
-  context  = "bullseye-slim"
-  tags     = [
-    "${repository}:bullseye-slim",
   ]
 }
