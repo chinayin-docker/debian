@@ -15,12 +15,6 @@ jobs:
         id: vars
         run: |
           echo "repository=${GITHUB_ACTOR}/$(basename ${GITHUB_REPOSITORY})" >> $GITHUB_OUTPUT
-          echo "repository11=${GITHUB_ACTOR}" >> $GITHUB_OUTPUT
-          echo "The repository is ${{ steps.vars.outputs.repository }}, ${{ steps.vars.outputs.repository11 }}"
-      - name: Set variables Test
-        id: vars2
-        run: |
-          echo "The repository is ${{ steps.vars.outputs.repository }}, ${{ steps.vars.outputs.repository11 }}"
       - name: Free up disk space
         run: |
           sudo apt autoremove --purge && sudo apt -y clean
