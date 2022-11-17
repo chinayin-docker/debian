@@ -14,7 +14,8 @@ jobs:
       - name: Set variables
         id: vars
         run: |
-          echo ::set-output name=repository::${GITHUB_ACTOR}/$(basename ${GITHUB_REPOSITORY})
+          echo "{repository}=${GITHUB_ACTOR}/$(basename ${GITHUB_REPOSITORY})" >> $GITHUB_OUTPUT
+          echo "The repository is ${{ steps.vars.outputs.repository }}"
       - name: Free up disk space
         run: |
           sudo apt autoremove --purge && sudo apt -y clean
