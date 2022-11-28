@@ -23,7 +23,7 @@ RUN if [ ${CHANGE_SOURCE} = true ]; then \
 
 RUN set -eux \
     ## alias
-    && printf "alias ls='ls --color=auto'\nalias ll='ls -l --color=auto'\nalias l='ls -lA --color=auto'" >> /root/.bashrc \
+    && printf "alias ls='ls --color=auto'\nalias ll='ls -l --color=auto'\nalias l='ls -lA --color=auto'" >> /etc/profile.d/ll.sh \
     ## install packages
     && install_packages procps tini \
     ## end
