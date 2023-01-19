@@ -1,7 +1,7 @@
 Debian Base Image
 =================
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/chinayin-docker/debian/Docker%20Image%20CI)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/chinayin-docker/debian/ci.yml)
 ![Docker Image Version (latest semver)](https://img.shields.io/docker/v/chinayin/debian?sort=semver)
 ![Docker Image Size (latest semver)](https://img.shields.io/docker/image-size/chinayin/debian?sort=semver)
 ![Docker Pulls](https://img.shields.io/docker/pulls/chinayin/debian)
