@@ -7,7 +7,7 @@ variable "repo" {
 }
 
 group "default" {
-  targets = ["buster", "buster-slim", "bullseye", "bullseye-slim"]
+  targets = ["bullseye", "bullseye-slim"]
 }
 
 function "platforms" {
