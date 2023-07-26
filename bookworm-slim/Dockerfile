@@ -16,9 +16,7 @@ ENV CHANGE_SOURCE ${CHANGE_SOURCE}
 ARG TZ=Asia/Shanghai
 ENV TZ ${TZ}
 RUN if [ ${CHANGE_SOURCE} = true ]; then \
-    sed -i 's/deb.debian.org/mirrors.aliyun.com/' /etc/apt/sources.list && \
-    sed -i 's/security.debian.org/mirrors.aliyun.com/' /etc/apt/sources.list && \
-    sed -i 's/security-cdn.debian.org/mirrors.aliyun.com/' /etc/apt/sources.list \
+    echo "change source." \
 ;fi && ln -snf /usr/share/zoneinfo/${TZ} /etc/localtime && echo ${TZ} > /etc/timezone;
 
 RUN set -eux \
