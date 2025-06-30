@@ -17,10 +17,12 @@ You can use the image directly, e.g.
 
 ```bash
 docker run --rm -it chinayin/debian:bookworm-slim
-docker run --rm -it chinayin/debian:bullseys-slim
-docker run --rm -it chinayin/debian:buster-slim
 docker run --rm -it chinayin/debian:12-slim
+
+docker run --rm -it chinayin/debian:bullseys-slim
 docker run --rm -it chinayin/debian:11-slim
+
+docker run --rm -it chinayin/debian:buster-slim
 docker run --rm -it chinayin/debian:10-slim
 ```
 
