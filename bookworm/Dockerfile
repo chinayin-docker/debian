@@ -11,12 +11,12 @@ LABEL maintainer="chinayin <whereismoney@qq.com>"
 
 COPY prebuildfs /
 
-ARG CHANGE_SOURCE=true
-ENV CHANGE_SOURCE ${CHANGE_SOURCE}
+ARG CHANGE_SOURCE=false
+ENV CHANGE_SOURCE=${CHANGE_SOURCE}
 ARG TZ=Asia/Shanghai
-ENV TZ ${TZ}
+ENV TZ=${TZ}
 RUN if [ ${CHANGE_SOURCE} = true ]; then \
-    echo "change source." \
+    sed -i 's|deb.debian.org|mirrors.aliyun.com|g' /etc/apt/sources.list.d/debian.sources \
 ;fi && ln -snf /usr/share/zoneinfo/${TZ} /etc/localtime && echo ${TZ} > /etc/timezone;
 
 RUN set -eux \
