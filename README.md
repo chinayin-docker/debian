@@ -16,14 +16,14 @@ Using Debian
 You can use the image directly, e.g.
 
 ```bash
+docker run --rm -it chinayin/debian:trixie-slim
+docker run --rm -it chinayin/debian:13-slim
+
 docker run --rm -it chinayin/debian:bookworm-slim
 docker run --rm -it chinayin/debian:12-slim
 
-docker run --rm -it chinayin/debian:bullseys-slim
+docker run --rm -it chinayin/debian:bullseye-slim
 docker run --rm -it chinayin/debian:11-slim
-
-docker run --rm -it chinayin/debian:buster-slim
-docker run --rm -it chinayin/debian:10-slim
 ```
 
 The images are built daily and have the security release enabled, so will contain any security updates released more
@@ -32,12 +32,12 @@ than 24 hours ago.
 You can also use the images as a base for your own Dockerfile:
 
 ```bash
+FROM chinayin/debian:trixie-slim
 FROM chinayin/debian:bookworm-slim
-FROM chinayin/debian:bullseys-slim
-FROM chinayin/debian:buster-slim
+FROM chinayin/debian:bullseye-slim
+FROM chinayin/debian:13-slim
 FROM chinayin/debian:12-slim
 FROM chinayin/debian:11-slim
-FROM chinayin/debian:10-slim
 ```
 
 ### Install package

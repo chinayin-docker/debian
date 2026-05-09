@@ -7,7 +7,7 @@ variable "repo" {
 }
 
 group "default" {
-  targets = ["bullseye", "bullseye-slim", "bookworm", "bookworm-slim"]
+  targets = ["trixie", "trixie-slim", "bookworm", "bookworm-slim", "bullseye", "bullseye-slim"]
 }
 
 function "platforms" {
@@ -27,6 +27,23 @@ target "_all_platforms" {
   platforms = platforms()
 }
 
+target "trixie" {
+  inherits = ["_all_platforms"]
+  context  = "trixie"
+  tags     = [
+    "${repository}:trixie",
+    "${repository}:13",
+  ]
+}
+target "trixie-slim" {
+  inherits = ["_all_platforms"]
+  context  = "trixie-slim"
+  tags     = [
+    "${repository}:latest",
+    "${repository}:trixie-slim",
+    "${repository}:13-slim",
+  ]
+}
 target "bookworm" {
   inherits = ["_all_platforms"]
   context  = "bookworm"
@@ -37,9 +54,8 @@ target "bookworm" {
 }
 target "bookworm-slim" {
   inherits = ["_all_platforms"]
-  context  = "bookworm"
+  context  = "bookworm-slim"
   tags     = [
-    "${repository}:latest",
     "${repository}:bookworm-slim",
     "${repository}:12-slim",
   ]
@@ -58,21 +74,5 @@ target "bullseye-slim" {
   tags     = [
     "${repository}:bullseye-slim",
     "${repository}:11-slim",
-  ]
-}
-target "buster" {
-  inherits = ["_all_platforms"]
-  context  = "buster"
-  tags     = [
-    "${repository}:buster",
-    "${repository}:10",
-  ]
-}
-target "buster-slim" {
-  inherits = ["_all_platforms"]
-  context  = "buster"
-  tags     = [
-    "${repository}:buster-slim",
-    "${repository}:10-slim",
   ]
 }
